@@ -1,0 +1,48 @@
+##COURSE: GCP Fundamentals: Getting Started with Kubernetes Engine
+##MODULE: Getting Started with Google Cloud Platform
+##LAB TITLE: Google Cloud Fundamentals: Getting Started with GKE
+
+##Objectives: 
+***Provision a Kubernetes cluster using Kubernetes Engine.
+***Deploy and manage Docker containers using kubectl.
+
+##save the zone assigned by Qwiklabs into an environment variable
+
+    export MY_ZONE=us-central1-a
+
+***Provision a Kubernetes cluster using Kubernetes Engine.
+
+
+##start a kubernetes cluster  named webfrontend
+
+    gcloud container clusters create webfrontend --zone $MY_ZONE --num-nodes 2
+
+##check kuberctl cluster installed version
+
+    kubectl version
+
+***Deploy and manage Docker containers using kubectl.
+
+##launch a single instance of the nginx container
+
+    kubectl create deploy nginx --image=nginx:1.17.10
+
+    kubectl get pods
+##expose nginx container to the internet
+
+    kubectl expose deployment nginx --port 80 --type LoadBalancer
+
+##view the new service
+
+    kubectl get services
+
+##scale up number of pods running
+
+    kubectl scale deployment nginx --replicas 3
+
+##confirm number of pods
+    kubectl get pods
+
+##verify number of pods
+
+    kubectl get services
